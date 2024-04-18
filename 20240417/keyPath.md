@@ -67,3 +67,32 @@ person2.value(forKeyPath: #keyPath(Person2.name)) // 변경된 방식(컴파일�
 let newPath = namePath.appending(path: \.name)
 ```
 appending 메서드를 이용하여 경로추가도 가능하다.
+
+## selector
+메서드의 메모리 주소를 가리키기 위해서 사용
+```swift
+import UIKit
+
+class Dog: NSObject {
+    var num = 1.0
+    
+    @objc var doubleNum: Double {
+        get {
+            return num * 2
+        }
+        set {
+            num = newValue / 2.0
+        }
+    }
+    
+    @objc func run() {
+        print("강아지가 달립니다.")
+    }
+}
+
+let eyesSelector = #selector(getter: Dog.doubleNum)
+let nameSelector = #selector(setter: Dog.doubleNum)
+
+// Selector 타입
+let runSelector = #selector(Dog.run)
+```
